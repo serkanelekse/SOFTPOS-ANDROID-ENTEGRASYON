@@ -36,3 +36,23 @@ Deeplink konfigürasyonu için "data" kısmı eklenmelidir.
             </intent-filter>
         </activity>
 ```
+
+# Activity Düzenlemeleri
+
+İşlem yapılan activity içerisinde “onNewIntent” metodu override edilmeli ve 
+aşağıdaki gibi deeplink aktivasyon fonksiyonu çağırılmalı.
+
+```kotlin
+override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        SoftposDeeplinkSdk.handleDeeplinkTransaction()
+}
+```
+
+
+
+
+
+
+
