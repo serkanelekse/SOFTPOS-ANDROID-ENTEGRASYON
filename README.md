@@ -3,7 +3,7 @@ SOFTPOS ANDROID ENTEGRASYON
 
 # Implementation
 
-```kotlin
+```groovy
 implementation(“com.provisionpay:android-deeplink-sdk:1.0.22")
 ```
 # Manifest Ayarları
@@ -12,7 +12,7 @@ implementation(“com.provisionpay:android-deeplink-sdk:1.0.22")
 "Activity" tag içerisine 'launchMode=singleTask' eklenmelidir.
 Deeplink konfigürasyonu için "data" kısmı eklenmelidir.
 
-```kotlin
+```xml
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
