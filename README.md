@@ -49,6 +49,133 @@ override fun onNewIntent(intent: Intent?) {
         SoftposDeeplinkSdk.handleDeeplinkTransaction()
 }
 ```
+# Softpos Initialize ve Callback Kontrolü
+
+
+```kotlin
+        SoftposDeeplinkSdk.initialize(
+            InitializeConfig(
+                privateKey = "privateKey",
+                activity = activity,
+                deeplinkUrl = "softPosUrl"
+            )
+        )
+        SoftposDeeplinkSdk.setDebugMode(true)
+
+        SoftposDeeplinkSdk.subscribe(object : SoftposDeeplinkSdkListener {
+            override fun onCancel() {
+                Log.d("SOFTPOS", "onCancel)")
+
+            }
+
+            override fun onError(e: Throwable) {
+                Log.d("SOFTPOS", "onError")
+
+            }
+
+            override fun onIntentData(dataFlow: IntentDataFlow, data: String?) {
+                Log.d("SOFTPOS", "onIntentData")
+
+            }
+
+            override fun onOfflineDecline(paymentFailedResult: PaymentFailedResult?) {
+                Log.d("SOFTPOS", "onOfflineDecline")
+
+            }
+
+            override fun onPaymentDone(transaction: Transaction, isApproved: Boolean) {
+                Log.d("SOFTPOS", "onPaymentDone")
+
+            }
+
+            override fun onSoftposError(errorType: SoftposErrorType, description: String?) {
+                Log.d("SOFTPOS", "onSoftposError")
+
+            }
+
+            override fun onTimeOut() {
+                Log.d("SOFTPOS", "onTimeOut")
+
+            }
+        })
+
+        SoftposDeeplinkSdk.registerBroadcastReceiver("com.provisionpay.softpos.esnekpos",
+            object : BroadcastReceiverListener {
+                override fun onSoftposBroadcastReceived(
+                    eventType: Int,
+                    eventTypeMessage: String,
+                    paymentSessionToken: String
+                ) {
+                    Log.d("SOFTPOS", "onSoftposBroadcastReceived")
+                }
+            }
+        )
+
+        override fun onPause() {
+                super.onPause()
+                SoftposDeeplinkSdk.unregisterBroadcastReceiver()
+        }
+```
+# Softpos Ödeme Başlatma
+
+```kotlin
+        SoftposDeeplinkSdk.startPayment(
+                "paymentSessionId",
+                "softPosUrl"
+        )
+```
+
+# Esnekpos Ödeme Başlatma ve Bitirme Metodları
+
+Bu dokümantasyon, `https://posservice.esnekpos.com/api/mobile/` base URL'ini kullanan iki adet API çağrısını içermektedir.
+
+---
+
+## 1. SoftPosStartPayment
+
+### Endpoint
+`POST https://posservice.esnekpos.com/api/mobile/SoftPosStartPayment`
+
+### Request Body
+
+| Parameter     | Type   | Description        |
+|---------------|--------|--------------------|
+| `dealerId`    | String | Bayi ID           |
+| `userId`      | String | Kullanıcı ID      |
+| `amount`      | String | Ödeme Tutarı      |
+| `installment` | Int    | Taksit Sayısı     |
+| `mobileToken` | String | Mobil Token       |
+| `merchant`    | String | Mağaza ID         |
+| `merchantKey` | String | Mağaza Anahtarı   |
+
+#### JSON Format
+
+```json
+{
+  "dealerId": "string",
+  "userId": "string",
+  "amount": "string",
+  "installment": 0,
+  "mobileToken": "string",
+  "merchant": "string",
+  "merchantKey": "string"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
