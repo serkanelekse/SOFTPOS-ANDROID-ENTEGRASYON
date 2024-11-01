@@ -160,10 +160,22 @@ Bu dokümantasyon, `https://posservice.esnekpos.com/api/mobile/` base URL'ini ku
   "merchant": "string",
   "merchantKey": "string"
 }
+```
+### Response Model
 
+| Parameter     | Type   | Description        |
+|---------------|--------|--------------------|
+| `status`    | String | İşlem Durumu           |
+| `message`      | String | Durum Mesajı      |
+| `paymentSessionId`      | String | İşlem ID |
 
-
-
+```json
+{
+  "status": boolean,
+  "message": "string",
+  "paymentSessionId": "string"
+}
+```
 
 
 
