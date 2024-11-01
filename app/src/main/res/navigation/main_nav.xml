@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.softposwhitelabel.ui.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_receiptFragment"
+            app:destination="@id/receiptFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_declineFragment"
+            app:destination="@id/declineFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/receiptFragment"
+        android:name="com.example.softposwhitelabel.ui.receipt.ReceiptFragment"
+        android:label="ReceiptFragment" />
+    <dialog
+        android:id="@+id/declineFragment"
+        android:name="com.example.softposwhitelabel.ui.receipt.decline.DeclineFragment"
+        android:label="DeclineFragment" >
+
+        <argument android:name="messageText" />
+    </dialog>
+</navigation>
