@@ -124,7 +124,7 @@ override fun onNewIntent(intent: Intent?) {
 
 ```kotlin
         SoftposDeeplinkSdk.startPayment(
-                "paymentSessionId",
+                "paymentSessionId" //Esnekpos Ödeme başlatma metodu çağırıldıktan sonra gelen response modelinde "paymentSessionId" parametresi gönderilmelidir.,
                 "softPosUrl"
         )
 ```
@@ -190,7 +190,7 @@ override fun onNewIntent(intent: Intent?) {
 |---------------|--------|--------------------|
 | `dealerId`    | String | Bayi ID           |
 | `userId`      | String | Kullanıcı ID      |
-| `paymentSessionId`      | String | İşlem ID (Ödeme başlatırken kullanılan id kullanılmalıdır.) |
+| `paymentSessionId`      | String | İşlem ID (Esnekpos Ödeme başlatma metodu çağırıldıktan sonra gelen response modelinde "paymentSessionId" parametresi gönderilmelidir.) |
 | `callbackStatus`      | String | Geri Bildirim Durumu      |
 | `data` | String    | Softpos callbackten dönen data gönderilmelidir("transactionGson")     |
 | `mobileToken` | String | Mobil Token       |
@@ -226,7 +226,6 @@ override fun onNewIntent(intent: Intent?) {
   "data": "string"
 }
 ```
-
 
 
 
