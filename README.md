@@ -70,7 +70,8 @@ override fun onNewIntent(intent: Intent?) {
 
             override fun onError(e: Throwable) {
                 Log.d("SOFTPOS", "onError")
-
+                val gson = Gson()
+                val transactionGson = gson.toJson(e)
             }
 
             override fun onIntentData(dataFlow: IntentDataFlow, data: String?) {
@@ -80,17 +81,20 @@ override fun onNewIntent(intent: Intent?) {
 
             override fun onOfflineDecline(paymentFailedResult: PaymentFailedResult?) {
                 Log.d("SOFTPOS", "onOfflineDecline")
-
+                val gson = Gson()
+                val transactionGson = gson.toJson(paymentFailedResult)
             }
 
             override fun onPaymentDone(transaction: Transaction, isApproved: Boolean) {
                 Log.d("SOFTPOS", "onPaymentDone")
-
+                val gson = Gson()
+                val transactionGson = gson.toJson(transaction)
             }
 
             override fun onSoftposError(errorType: SoftposErrorType, description: String?) {
                 Log.d("SOFTPOS", "onSoftposError")
-
+                val gson = Gson()
+                val transactionGson = gson.toJson(description)
             }
 
             override fun onTimeOut() {
@@ -126,8 +130,6 @@ override fun onNewIntent(intent: Intent?) {
 ```
 
 # Esnekpos Ödeme Başlatma ve Bitirme Metodları
-
-Bu dokümantasyon, `https://posservice.esnekpos.com/api/mobile/` base URL'ini kullanan iki adet API çağrısını içermektedir.
 
 ---
 
@@ -171,9 +173,57 @@ Bu dokümantasyon, `https://posservice.esnekpos.com/api/mobile/` base URL'ini ku
 
 ```json
 {
-  "status": boolean,
+  "status": true,
   "message": "string",
   "paymentSessionId": "string"
+}
+```
+
+## 2. SoftPosPaymentCallback
+
+### Endpoint
+`POST https://posservice.esnekpos.com/api/mobile/SoftPosPaymentCallback`
+
+### Request Body
+
+| Parameter     | Type   | Description        |
+|---------------|--------|--------------------|
+| `dealerId`    | String | Bayi ID           |
+| `userId`      | String | Kullanıcı ID      |
+| `paymentSessionId`      | String | İşlem ID (Ödeme başlatırken kullanılan id kullanılmalıdır.) |
+| `callbackStatus`      | String | Geri Bildirim Durumu      |
+| `data` | String    | Softpos callbackten dönen data gönderilmelidir("transactionGson")     |
+| `mobileToken` | String | Mobil Token       |
+| `merchant`    | String | Mağaza ID         |
+| `merchantKey` | String | Mağaza Anahtarı   |
+
+#### JSON Format
+
+```json
+{
+  "dealerId": "string",
+  "userId": "string",
+  "paymentSessionId": "string",
+  "callbackStatus": "string",
+  "data": "string",
+  "mobileToken": "string",
+  "merchant": "string",
+  "merchantKey": "string"
+}
+```
+### Response Model
+
+| Parameter     | Type   | Description        |
+|---------------|--------|--------------------|
+| `status`    | String | İşlem Durumu           |
+| `message`      | String | Durum Mesajı      |
+| `data`      | String | Data |
+
+```json
+{
+  "status": true,
+  "message": "string",
+  "data": "string"
 }
 ```
 
