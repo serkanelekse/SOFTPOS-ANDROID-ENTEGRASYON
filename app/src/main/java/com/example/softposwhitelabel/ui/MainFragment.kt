@@ -166,8 +166,8 @@ class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>() 
             paymentSessionId = paymentSession,
             callbackStatus = status,
             data = data,
-            merchant = "esnekpos",
-            merchantKey = "6p35Bc4asC6y2K6TvjW98elIdHpzErSa"
+            merchant = "",
+            merchantKey = ""
         )
 
         return paymentCallbackRequestModel
@@ -196,8 +196,8 @@ class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>() 
                     amount = "1",
                     installment = 1,
                     token = preferenceHelper.getToken().toString(),
-                    merchant = "esnekpos",
-                    merchantKey = "6p35Bc4asC6y2K6TvjW98elIdHpzErSa"
+                    merchant = "",
+                    merchantKey = ""
                 )
                 viewModel.startPayment(startPaymentRequestModel)
             } else {
