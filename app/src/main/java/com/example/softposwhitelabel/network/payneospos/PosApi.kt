@@ -9,7 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface PosApi {
-    @POST("SoftPosStartPayment")
+    @POST("SoftPosStartPaymentsdk")
     fun startPayment(@Body startPaymentRequestModel: StartPaymentRequestModel): Single<StartPaymentResponseModel>
 
     @POST("SoftPosPaymentCallback")

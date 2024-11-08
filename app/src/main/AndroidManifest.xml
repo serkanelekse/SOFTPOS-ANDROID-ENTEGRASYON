@@ -52,7 +52,7 @@
                 <data
                     android:scheme="https"
                     android:host="softpos.esnekpos.com"
-                    android:pathPrefix="/api/mobile/receipt" />
+                    android:pathPrefix="/api/mobile/receiptsdk" />
             </intent-filter>
         </activity>
 
