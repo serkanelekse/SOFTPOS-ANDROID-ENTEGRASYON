@@ -28,7 +28,7 @@ class MainFragmentViewModel(application: Application): BaseViewModel(application
 
     fun startPayment(startPaymentRequestModel: StartPaymentRequestModel){
         try {
-
+            Log.d("startPayRequest", startPaymentRequestModel.toString())
             loading.value = true
             disposable.add(
                 paymentApiInstance.startPayment(startPaymentRequestModel)

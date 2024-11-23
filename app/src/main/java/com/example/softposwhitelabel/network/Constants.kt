@@ -7,8 +7,8 @@ object Constants {
     const val BASE_URL = "https://posservice.esnekpos.com/api/mobile/"
 
 
-    //const val softPosPrivateKey ="3Ws4QMv7u4cl4Tey8UtY7XFlvV7EBOcC"
-    const val softPosPrivateKey ="EdFqBUXxVJgrODljAhdVirRAVuKbRAZC"
+    //const val softPosPrivateKey =""
+    const val softPosPrivateKey =""
     const val softPosUrl= "https://softpos.esnekpos.com"
 
     const val Content_Type = "Content-Type"
